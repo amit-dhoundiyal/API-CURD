@@ -1,0 +1,29 @@
+<style>
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+</style>
+<center>
+<h3>Welcome User</h3>
+
+<% if current_user %>  
+     <%= link_to "All Movies", movies_path %><br><br>
+     Logged in as <%= current_user.email %><br><br>  
+        
+
+
+<% else %>  
+<%= link_to '<button type="button">Sign Up</button>'.html_safe, new_user_path %><br><br>
+<%= link_to '<button type="button">Login</button>'.html_safe, login_path %> 
+<% end %>
+</center> 

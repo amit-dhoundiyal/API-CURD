@@ -1,0 +1,49 @@
+<style>
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+</style>
+<% if current_user %>
+<p>
+  <strong>Movie Name:</strong>
+  <%= @movie.movie_name %>
+</p>
+ 
+<p>
+  <strong>Movie Image:</strong>
+  <%= image_tag @movie.image.thumb.url %>
+</p>
+
+<br><h2>Comments</h2>
+<% @movie.comments.each do |comment| %>
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.comment %>
+  </p>
+<% end %>
+ 
+<h2>Add a comment:</h2>
+<%= form_with(model: [@movie, @movie.comments.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :Comment %><br>
+    <%= form.text_area :comment %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %><br>
+<%= link_to 'Back', movies_path %><br><br>
+<% else %>  
+<%= link_to '<button type="button">Sign Up</button>'.html_safe, new_user_path %>
+<%= link_to '<button type="button">Login</button>'.html_safe, login_path %>
+<% end %> 

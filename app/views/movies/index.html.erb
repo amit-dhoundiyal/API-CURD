@@ -1,0 +1,43 @@
+ <style>
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+</style>
+ <% if current_user %>
+ <%= link_to "New Movie", new_movie_path %><br>
+
+<br><table border=2>
+  <tr>
+    <th>Movie_name</th>
+    <th>Movie_image</th>
+    <th>Like</th>
+    <th>Dislike</th>
+    <th>comment</th>
+    <th colspan="2"></th>
+  </tr>
+ 
+  <% @movie.each do |movie| %>
+    <tr>
+      <td><%= movie.movie_name %></td>
+      <td><%= image_tag movie.image.thumb.url %></td>
+      <td><%= movie.like%><%= link_to 'Like', like_me_path(movie) %></td>
+      <td><%= movie.dislike%><%= link_to 'Dislike', dislike_me_path(movie) %></td>
+      <td><%= link_to 'Comment', movie_path(movie) %></td>
+    </tr>
+  <% end %>
+</table><br>
+<%= link_to "Back", users_path %><br><br>
+<% else %>  
+<%= link_to '<button type="button">Sign Up</button>'.html_safe, new_user_path %>
+<%= link_to '<button type="button">Login</button>'.html_safe, login_path %>
+<% end %> 

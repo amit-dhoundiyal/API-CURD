@@ -1,0 +1,31 @@
+ <% if current_user %>
+<%= form_with scope: :movie,url: movies_path,local: true do |f| %>
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this Movie from being saved:</h2>
+ 
+      <ul>
+      <% @movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="field">
+    <%= f.label :Movie_Name %><br>
+    <%= f.text_field :movie_name %>
+  </div><br><br>
+  <div class="field">
+    <%= f.label :Movie_image %><br>
+    <%= f.file_field :image %>
+  </div><br><br>
+ 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %><br><br>
+  <% else %>  
+<%= link_to '<button type="button">Sign Up</button>'.html_safe, new_user_path %>
+<%= link_to '<button type="button">Login</button>'.html_safe, login_path %>
+<% end %>
