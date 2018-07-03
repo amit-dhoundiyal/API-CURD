@@ -1,0 +1,164 @@
+<body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<style> 
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+</style>
+</body>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="container">
+   <h2>Login</h2>
+   <p>Please fill in this form to Login.</p>
+   <hr>
+   
+   <%= f.text_field :email,autocomplete: "email",autofocus: true, placeholder: "Email  Address" %>
+​
+
+   <%= f.password_field :password ,autocomplete: "off",autofocus: true, placeholder: "Password" %>
+   <br>
+   <div class="form-group row">
+       <div class="col-md-12 field">
+          <% if devise_mapping.rememberable? -%>
+          <label class="checkbox-design remember">
+           <%= f.check_box :remember_me %>
+            <span></span>
+            Remember Me
+            </label>
+           <% end -%>
+           <div style="margin-left: 90%;margin-top: -2%;">
+           <%= link_to 'Forgot Password', new_user_password_path ,class: "forgot-pass" %>
+           </div>
+           </div>
+     </div>
+
+​   <br>
+   <br>
+   <center>
+   <div class="clearfix">
+      <%= f.submit "Login", class: 'btn btn-success' %>
+      <%= link_to 'Cancel', root_path, class: 'btn btn-danger' %>
+   </div>
+   </center>
+   <br>
+   <br>
+   <center>
+   <div>
+   <p>Don't Have an Account, Please Create an Account?&nbsp<%= link_to 'Sign up', new_user_registration_path %></p>
+   </div>
+   </center>
+ </div>
+​<% end %>
+
+
+ <script>
+
+ jQuery.validator.addMethod("noSpace", function(value, element) { 
+ return value.indexOf(" ") < 0 && value != ""; 
+ }, "No space please and don't leave it empty");
+
+ $(document).ready(function(){
+ $("#new_user").validate({
+  
+  errorPlacement: function (error, element) {
+   error.insertAfter(element);
+   },
+    rules: {
+    
+
+    "user[email]":{
+      required: true,
+      maxlength: 30,
+      email: true
+    },
+    "user[password]":{
+      required: true,
+      maxlength: 8,
+      minlength: 6
+    },
+  }, 
+  
+  messages: {
+
+    "user[email]":{
+      required: "This field is required",
+      minlength: "Password should not be more than 6 characters",
+      maxlength: "Email should not be more than 30 characters"
+
+    },
+    
+    "user[password]":{
+      required: "This field is required",
+      minlength: "Password should not be more than 6 characters",
+      maxlength: "Password should not be more than 20 characters"
+     
+
+    }
+  }
+ });
+});
+</script>
