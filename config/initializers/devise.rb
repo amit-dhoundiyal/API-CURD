@@ -8,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '265e0a6acad1da69a6338b45f134bea8710d39bacbb40eae84cd92e7334c365c09ecbefd6a69c17e018108850b96442ce7a21081f3974db4bb228be87daeffac'
+  config.secret_key = '46b71fa4eba99deb3733e87f42c28779b4f568948c139a866d7d076e2265a4a35d98d82787809d1c43a439160cc4e15a4be27d23ee684580e41eae049522df12'
   
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -165,6 +165,7 @@ Devise.setup do |config|
   # Range for password length.
   config.password_length = 6..128
 
+
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
@@ -190,7 +191,6 @@ Devise.setup do |config|
   # :both  = Enables both strategies
   # :none  = No unlock strategy. You should handle unlocking by yourself.
   # config.unlock_strategy = :both
-
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
   # config.maximum_attempts = 20
