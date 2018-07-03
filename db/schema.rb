@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_135920) do
+ActiveRecord::Schema.define(version: 2018_07_03_143448) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
+    t.string "account_number"
+    t.float "account_balance", default: 0.0
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -23,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_07_03_135920) do
     t.string "description"
     t.string "typeof"
     t.float "amount", default: 0.0
-    t.integer "account_id"
+    t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_transactions_on_account_id"
@@ -57,4 +64,6 @@ ActiveRecord::Schema.define(version: 2018_07_03_135920) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "accounts", "users"
+  add_foreign_key "transactions", "accounts"
 end
