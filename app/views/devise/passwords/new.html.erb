@@ -1,0 +1,121 @@
+
+<body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<style> 
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+</style>
+</body>
+
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+<div class="container">
+<h2>Forgot your password?</h2>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email Address" %>
+
+   <br>
+   <br>
+  <div class="clearfix">
+    <%= f.submit "Send me reset password instructions",class: 'btn btn-success' %>
+    <%= link_to 'Cancel', new_user_session_path, class: 'btn btn-danger' %>
+  </div> 
+  </div>
+<% end %>
+
+ <script>
+
+ jQuery.validator.addMethod("noSpace", function(value, element) { 
+ return value.indexOf(" ") < 0 && value != ""; 
+ }, "No space please and don't leave it empty");
+
+ $(document).ready(function(){
+ $("#new_user").validate({
+  
+  errorPlacement: function (error, element) {
+   error.insertAfter(element);
+   },
+    rules: {
+    	  "user[email]":{
+      required: true,
+      maxlength: 30,
+      email: true
+    },
+
+    messages : {
+
+       "user[email]":{
+      required: "This field is required",
+      minlength: "Password should not be more than 6 characters",
+      maxlength: "Email should not be more than 30 characters"
+
+    }
+     }
+  }
+ });
+});
+</script>
