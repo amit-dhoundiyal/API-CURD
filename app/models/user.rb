@@ -12,6 +12,7 @@ class User < ApplicationRecord
   
   #This method is used to Make the User Phone number As the Account number.
    def enter_account_number
+ 
    	Account.create(account_number: self.phone_number,user_id: self.id)
    end
 
