@@ -1,10 +1,7 @@
 <head>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-
 </head>
 <body>
 
@@ -91,7 +88,7 @@ button:hover {
 <%= f.text_field :description , placeholder: "Description" %>
 <br>
 <br>
-<%= f.number_field :amount , placeholder: "Amount"%>
+<%= f.number_field :amount , placeholder: "Amount" ,:min => 0.1,:step => 0.01%>
 <br>
 <br>
 <%= f.submit "Send", class: 'btn btn-success' %>
@@ -101,9 +98,6 @@ button:hover {
 </body>
 <script>
 
- jQuery.validator.addMethod("noSpace", function(value, element) { 
- return value.indexOf(" ") < 0 && value != ""; 
- }, "No space please and don't leave it empty");
 
  $(document).ready(function(){
  $("#sendmoney").validate({
