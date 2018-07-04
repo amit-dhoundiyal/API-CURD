@@ -85,46 +85,7 @@ button:hover {
 <%= f.text_field :to , placeholder: "Account Holder",readonly: true %>
 <%= f.text_field :typeof , placeholder: "Type",readonly: true %>
 
-<%= f.number_field :amount , placeholder: "Amount"%>
+<%= f.number_field :amount , placeholder: "Amount",:min => 0.1,:step => 0.01 %>
 <%= f.submit "Credit", class: 'btn btn-success' %>
  </div>
 <% end %>
-
-
-<script>
-
- jQuery.validator.addMethod("noSpace", function(value, element) { 
- return value.indexOf(" ") < 0 && value != ""; 
- }, "No space please and don't leave it empty");
-
- $(document).ready(function(){
- $("#credit").validate({
-  
-  errorPlacement: function (error, element) {
-   error.insertAfter(element);
-   },
-    rules: {
-    "transactions[amount]":{
-      required: true,
-      maxlength: 10,
-      minlength: 1
-      
-    }
-  }, 
-  
-  messages: {
-    "transactions[amount]":{
-
-       if "transactions[amount]".val != 1000
-        {alert("length")
-        }
-
-      required: "This field is required",
-      minlength: "transactions[amount]".val ,
-      maxlength: "Phone Number should not be more than 10 digit s"
-     
-     }
-  }
- });
-});
-</script>

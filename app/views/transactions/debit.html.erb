@@ -82,7 +82,7 @@ button:hover {
 <%= f.text_field :from , placeholder: "from",readonly: true %>
 <%= f.text_field :to , placeholder: "Account Holder",readonly: true %>
 <%= f.text_field :typeof , placeholder: "Type",readonly: true %>
-<%= f.number_field :amount , placeholder: "Amount"%>
+<%= f.number_field :amount , placeholder: "Amount",:min => 0.1,:step => 0.01%>
 <%= f.submit "Debit", class: 'btn btn-success' %>
  </div>
 <% end %>
