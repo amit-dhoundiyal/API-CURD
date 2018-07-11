@@ -1,0 +1,66 @@
+  <div class="middle-container background">
+    <div class="container-common">
+      <div class="row align-items-center justify-content-center min-ht-window">
+        <div class="col-md-12">
+          <div class="middle-block max-WT-500 margin-auto pLR0">
+            <div class="logo-inner">
+              <%= link_to(image_tag("/assets/logo-inner.png"), root_path) %>
+            </div>
+            <div class="form-block min-ht-400 pb0">
+              <div class="form-header">
+                <h2>Login</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
+              </div>
+
+<%= form_for(resource, as: resource_name,:html => {:class => 'main-form p10 mt20'}, url: session_path(resource_name)) do |f| %>
+
+   <div class="form-group row">
+  <div class="col-md-12">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control", placeholder: "Email Address" %>
+  </div>
+  </div>
+
+  <div class="form-group row">
+  <div class="col-md-12">
+    <%= f.password_field :password, autocomplete: "off",class: "form-control", placeholder: "Password" %>
+  </div>
+  </div>
+
+    <div class="form-group row">
+       <div class="col-md-12 field">
+          <% if devise_mapping.rememberable? -%>
+          <label class="checkbox-design remember">
+           <%= f.check_box :remember_me %>
+            <span></span>
+            Remember Me
+            </label>
+           <% end -%>
+           <%= link_to 'Forgot Password', new_user_password_path ,class: "forgot-pass" %>
+           </div>
+     </div>
+
+<div class="form-group row">
+                  <div class="col-sm-12 text-center">
+                    <div class="google-captcha">
+                      <img src="/assets/google-captcha.png" alt="google captcha">
+                    </div>
+                  </div>
+                </div>
+  <div class="actions">
+    <%= f.submit "Sign in" ,class: "btn btn-block btn-login" %>
+  </div>
+                <div class="form-group row mb0">
+                  <div class="col-md-12">
+                    <div class="register">
+                      <p>or <%= link_to 'SIGN UP', new_user_registration_path ,class: "link-register" %></p>
+                    </div>
+                  </div>
+                </div>
+<% end %>
+
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>

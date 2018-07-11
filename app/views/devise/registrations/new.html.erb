@@ -1,0 +1,61 @@
+<div class="middle-container background">
+    <div class="container-common">
+      <div class="row align-items-center justify-content-center min-ht-window">
+        <div class="col-md-12">
+          <div class="middle-block max-WT-500 margin-auto pLR0">
+            <div class="logo-inner">
+            <%= link_to(image_tag("/assets/logo-inner.png"), root_path) %>
+            </div>
+
+<%= form_for(resource, as: resource_name,:html => {:class => 'main-form p10 mt20'}, url: registration_path(resource_name)) do |f| %>
+
+  <%= devise_error_messages!  %>
+
+  <div class="form-block min-ht-400 pb0">
+  <div class="form-header">
+  <h2>Register</h2>
+  <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
+  </div><br />
+  
+   <div class="form-group row">
+   <div class="col-md-12">
+    <%= f.text_field :name, autofocus: true,class: "form-control",placeholder: "Name", autocomplete: "name" %>
+  </div>
+  </div>
+  
+   <div class="form-group row">
+   <div class="col-md-12">
+    <%= f.email_field :email, autofocus: true,class: "form-control", placeholder: "Email Address",autocomplete: "email" %>
+  </div>
+  </div>
+
+   <div class="form-group row">
+   <div class="col-md-12">
+    <%= f.password_field :password,class: "form-control",placeholder: "Password", autocomplete: "off" %>
+  </div>
+  </div>
+
+ <div class="form-group row">
+   <div class="col-md-12">
+    <%= f.password_field :password_confirmation,class: "form-control",placeholder: "Confirm Password", autocomplete: "off" %>
+  </div>
+  </div>
+
+
+  <div class="form-group row mb0">
+  <div class="col-md-12">
+    <div class="actions">
+    <%= f.submit "Register",class: "btn btn-block btn-login" %>
+    </div>
+    <div class="register">
+    <p>Already Registered? <%= link_to 'SIGN IN', new_user_session_path ,class: "link-register" %></p>
+   </div>
+ 
+ </div>
+  </div>
+<% end %>
+  </div>
+</div>
+</div>
+</div>
+</div>
