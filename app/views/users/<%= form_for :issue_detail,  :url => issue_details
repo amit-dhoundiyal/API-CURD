@@ -1,0 +1,82 @@
+<%= form_for :issue_detail,  :url => issue_details_path, method: "post" ,"class": "well form-horizontal" do |f| %>
+<fieldset>
+
+
+<legend>Submit Assigned issues</legend>
+
+<!-- Text input-->
+ <%= f.hidden_field :user_id, :value => @current_user.id %>
+<div class="form-group">
+  <label class="col-md-4 control-label">Work Effort</label>
+    
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+ <%= f.text_field :work_effort, placeholder: "Enter hours", class: "form-control" %>
+    </div>
+  </div>
+</div><br><br>
+
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Estimated Effort To Complete</label>
+
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+ <%= f.text_field :estimated_effort_to_complete, placeholder: "Enter Hours", class: "form-control" %>
+    </div>
+  </div>
+</div><br><br>
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Estimated Projected Completion Date:</label>
+
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+ <%= f.date_field :estimated_projected_completion_date, class: "form-control" %>
+    </div>
+  </div>
+</div><br><br>
+
+
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Working Day</label>
+
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+ <%= f.date_field :working_day, placeholder: "Enter hours", class: "form-control" %>
+    </div>
+  </div>
+</div><br><br>
+
+
+
+<!-- Select Basic -->
+   
+<div class="form-group"> 
+  <label class="col-md-4 control-label">Assigned Issues</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+    
+ <%= f.select :issue_id, options_for_select(@user_issues) , class: "form-control selectpicker" %>    
+
+ 
+  </div>
+</div>
+</div><br><br><br>
+
+
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-4">
+<%= f.submit  %>
+  </div>
+</div>
+
+</fieldset>
+<%end%>
+</div>

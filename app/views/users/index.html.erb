@@ -1,0 +1,158 @@
+
+<body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}
+</style>
+</body>
+
+<%= form_with scope: :user,url: users_path,local: true do |f| %>
+<div class="container">
+   <h2>Sign up</h2>
+   <p>Please fill in this form to create an account.</p>
+  
+   <%= f.text_field :name,autofocus: true, autocomplete: "name", placeholder: "User Name" %>
+
+   <%= f.text_field :email,autofocus: true, autocomplete: "email", placeholder: "Email  Address" %>
+   
+  
+   <%= f.text_field :phone_number,autofocus: true, autocomplete: "false", placeholder: "Phone Number" %>
+   
+   <br>
+   <br>
+   <center>
+   <div class="clearfix">
+     
+     <%= f.submit "Sign Up", class: 'btn btn-success' %>
+     <%= link_to 'Cancel', root_path, class: 'btn btn-danger' %>
+   </div>
+   </center>
+   
+ </div>
+​<% end %>
+ <script>
+
+ jQuery.validator.addMethod("noSpace", function(value, element) { 
+ return value.indexOf(" ") < 0 && value != ""; 
+ }, "No space please and don't leave it empty");
+
+ $(document).ready(function(){
+ $("#new_user").validate({
+  
+  errorPlacement: function (error, element) {
+   error.insertAfter(element);
+   },
+    rules: {
+    "user[name]":{
+      required: true,
+      maxlength: 30,
+      minlength: 3
+    },
+
+    "user[email]":{
+      required: true,
+      maxlength: 30,
+      email: true
+    },
+    "user[phone_number]":{
+      required: true,
+      maxlength: 10,
+      
+    }
+  }, 
+  
+  messages: {
+    "user[name]":{
+      required: "This field is required",
+      minlength: "Name should not be more than 3 characters",
+      maxlength: "Name should not be more than 30 characters"
+      
+    },
+
+    "user[email]":{
+      required: "This field is required",
+      minlength: "Password should not be more than 6 characters",
+      maxlength: "Email should not be more than 30 characters"
+
+    },
+    "user[phone_number]":{
+      required: "This field is required",
+      minlength: "Phone Number should not be more than 8 digits",
+      maxlength: "Phone Number should not be more than 10 digit s"
+     
+     }
+  }
+ });
+});
+</script>

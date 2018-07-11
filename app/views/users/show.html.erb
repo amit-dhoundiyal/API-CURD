@@ -1,0 +1,143 @@
+<!-- 
+<body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}
+</style>
+</body>
+
+<%#= form_with scope: :user,url: verifications_path,local: true do |f| %>
+<div class="container">
+   <h2>Verify User</h2>
+  
+   <%#= f.text_field :Otp,autofocus: true, autocomplete: "name", placeholder: "Otp" %>
+   
+   <br>
+   <br>
+   <center>
+   <div class="clearfix">
+     
+     <%#= f.submit "Verify", class: 'btn btn-success' %>
+     <%#= link_to 'Cancel', root_path, class: 'btn btn-danger' %>
+   </div>
+   </center>
+   
+ </div>
+​<%# end %> -->
+<head>
+<style>
+.qr {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+  /*width: 10%;*/
+ 
+}
+/*.qr td {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+  padding: 0;
+  margin: 0;
+  width: 10px;
+  height: 10px;
+}
+*/
+.qr td.black { background-color: #000; }
+.qr td.white { background-color: #fff; }
+
+</style>
+</head>
+<center>
+<table class="qr">
+  <% @qr.modules.each_index do |x| %>
+      <tr>
+        <% @qr.modules.each_index do |y| %>
+            <% if @qr.dark?(x,y) %>
+                <td class="black"/>
+            <% else %>
+                <td class="white"/>
+            <% end %>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+</center>
+
+<br>
+<br>
+<br>
+<%= raw @qr.as_svg %>

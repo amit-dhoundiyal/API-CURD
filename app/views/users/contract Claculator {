@@ -1,0 +1,28 @@
+contract Claculator {
+    uint a;
+    uint b;
+    function set(uint x) {
+        a = x;
+    }
+    function set(uint y) {
+        b = y;
+    }
+
+    function get() constant returns (uint retVal) {
+        if(){
+        
+        }
+        else if(){
+
+        }
+        else if(){
+
+        }
+        else if(){
+
+        }
+        else{
+
+        }
+     }
+}
